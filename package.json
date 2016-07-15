@@ -1,6 +1,6 @@
 {
   "name": "feliz.preset-npw",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A feliz.js preset using: Nunjucks, PostCSS and Webpack",
   "main": "lib/index.js",
   "author": "Héctor Menéndez <etor@gik.mx",
@@ -34,6 +34,7 @@
     "feliz-views": "0.0.9",
     "feliz.error": "0.0.2",
     "feliz.plug": "0.0.2",
+    "feliz.preset": "0.0.2",
     "feliz.util": "0.0.2",
     "lost": "^7.0.3",
     "postcss-conditionals": "^2.0.2",
