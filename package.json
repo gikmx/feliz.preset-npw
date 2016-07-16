@@ -1,6 +1,6 @@
 {
   "name": "feliz.preset-npw",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A feliz.js preset using: Nunjucks, PostCSS and Webpack",
   "main": "lib/index.js",
   "author": "Héctor Menéndez <etor@gik.mx",
@@ -47,13 +47,10 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "feliz.hooks": "0.0.2",
-    "ghooks": "^1.3.2"
+    "feliz.hooks": "0.0.4",
+    "husky": "^0.11.5"
   },
-  "scripts": {},
-  "config": {
-    "ghooks": {
-      "pre-commit": "./node_modules/.bin/feliz.hooks pre-commit"
-    }
+  "scripts": {
+    "precommit": "./node_modules/.bin/feliz.hooks pre-commit"
   }
 }
