@@ -1,18 +1,18 @@
 {
   "name": "feliz.preset-npw",
-  "version": "0.0.12",
-  "description": "A feliz.js preset using: Nunjucks, PostCSS and Webpack",
+  "version": "0.1.3",
+  "description": "A feliz.js preset using: Hapi, Nunjucks, PostCSS and Webpack",
   "main": "lib/index.js",
   "author": "Héctor Menéndez <etor@gik.mx",
   "license": "MIT",
   "analyze": true,
   "keywords": [
     "feliz",
+    "preset",
     "hapi",
     "nunjucks",
     "postcss",
-    "webpack",
-    "preset"
+    "webpack"
   ],
   "repository": {
     "type": "git",
@@ -47,10 +47,26 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "feliz.hooks": "0.0.4",
-    "husky": "^0.11.5"
+    "coveralls": "^2.11.12",
+    "feliz.test": "0.1.0-beta.13",
+    "husky": "^0.11.5",
+    "istanbul": "^0.4.5",
+    "jsdoc-to-markdown": "^1.3.7",
+    "nodemon": "^1.10.2",
+    "tap-spec": "^4.1.1"
   },
   "scripts": {
-    "precommit": "./node_modules/.bin/feliz.hooks pre-commit"
+    "start": "nodemon ./test -x 'npm run docs && npm run debug -s' -w ./lib -w ./test | tap-spec",
+    "docs": "jsdoc2md -t ./template.hbs 'lib/**/*.js' > README.md",
+    "postdocs": "git add --force README.md",
+    "test": "tape ./test | tap-spec",
+    "debug": "node-debug --cli --no-debug-brk --debug-port 5902 --web-port 9902 --save-live-edit --no-preload",
+    "debug:watch": "nodemon ./test -x 'npm run debug -s' -w ./lib -w ./test | tap-spec",
+    "cover": "npm run cover:stats && npm run cover:send",
+    "cover:check": "npm run cover:stats && istanbul check-coverage",
+    "cover:stats": "istanbul cover tape -- ./test",
+    "cover:send": "cat ./coverage/lcov.info | coveralls",
+    "postversion": "git add package.json",
+    "precommit": "npm test && npm run cover:check && npm run docs && npm version prerelease --no-git-tag-version"
   }
 }
